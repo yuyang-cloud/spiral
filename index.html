@@ -787,6 +787,79 @@
             text-shadow: 0 0 10px rgba(52, 204, 204, 0.45);
         }
 
+        .comparison-grid {
+            display: grid;
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+            gap: 26px;
+        }
+
+        .comparison-scene {
+            padding: 18px;
+        }
+
+        .comparison-scene-title {
+            margin-bottom: 14px;
+            color: var(--text);
+            font-size: 1.22rem;
+            line-height: 1.25;
+            text-align: center;
+        }
+
+        .comparison-pair {
+            display: grid;
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+            gap: 14px;
+        }
+
+        .comparison-video {
+            min-width: 0;
+        }
+
+        .comparison-video .video-shell {
+            border-radius: 14px;
+        }
+
+        .comparison-video .video-shell video {
+            object-fit: contain;
+        }
+
+        .comparison-label {
+            margin: 10px 0 6px;
+            color: var(--soft);
+            font-size: 0.9rem;
+            font-weight: 800;
+            text-align: center;
+        }
+
+        .comparison-label.baseline {
+            color: #ffb4bd;
+        }
+
+        .comparison-label.ours {
+            color: #9ff5c8;
+        }
+
+        .comparison-step {
+            color: var(--muted);
+            font-size: 0.78rem;
+            line-height: 1.5;
+            text-align: center;
+        }
+
+        .step-good,
+        .step-bad {
+            display: inline;
+            font-weight: 680;
+        }
+
+        .step-good {
+            color: #63e6a0;
+        }
+
+        .step-bad {
+            color: #ff6b7a;
+        }
+
         .video-card {
             overflow: hidden;
         }
@@ -893,6 +966,11 @@
                 grid-template-columns: 1fr;
             }
 
+            .comparison-grid,
+            .comparison-pair {
+                grid-template-columns: 1fr;
+            }
+
             .flow-panel {
                 padding-bottom: 18px;
             }
@@ -938,6 +1016,7 @@
             <a href="#full-pipeline">Pipeline Demo</a>
             <a href="#feedback">Feedback Demo</a>
             <a href="#results">Results</a>
+            <a href="#comparison">Comparison</a>
             <a href="#citation">BibTeX</a>
         </div>
     </nav>
@@ -1013,7 +1092,7 @@
         <section class="section" id="teaser">
             <div class="wide-container">
                 <div class="teaser-video-panel glass">
-                    <video controls muted loop playsinline preload="metadata">
+                    <video controls muted playsinline preload="metadata">
                         <source src="assets/videos/full_pipeline/full_pipeline.mp4" type="video/mp4">
                     </video>
                 </div>
@@ -1201,7 +1280,7 @@
                 <div class="demo-grid">
                     <article class="video-card glass">
                         <div class="video-shell">
-                            <video controls muted loop playsinline preload="none" poster="assets/posters/full_pipeline.jpg">
+                            <video controls muted playsinline preload="none" poster="assets/posters/full_pipeline.jpg">
                                 <source src="assets/videos/full_pipeline/full_pipeline.mp4" type="video/mp4">
                             </video>
                         </div>
@@ -1212,7 +1291,7 @@
                     </article>
                     <article class="video-card glass">
                         <div class="video-shell">
-                            <video controls muted loop playsinline preload="none" poster="assets/posters/full_pipeline_result.jpg">
+                            <video controls muted playsinline preload="none" poster="assets/posters/full_pipeline_result.jpg">
                                 <source src="assets/videos/full_pipeline/full_pipeline_result.mp4" type="video/mp4">
                             </video>
                         </div>
@@ -1236,7 +1315,7 @@
                 <div class="demo-grid">
                     <article class="video-card glass">
                         <div class="video-shell">
-                            <video controls muted loop playsinline preload="none" poster="assets/posters/feedback_refine.jpg">
+                            <video controls muted playsinline preload="none" poster="assets/posters/feedback_refine.jpg">
                                 <source src="assets/videos/feedback_refinement/feedback_refine.mp4" type="video/mp4">
                             </video>
                         </div>
@@ -1247,7 +1326,7 @@
                     </article>
                     <article class="video-card glass">
                         <div class="video-shell">
-                            <video controls muted loop playsinline preload="none" poster="assets/posters/feedback_refine_result.jpg">
+                            <video controls muted playsinline preload="none" poster="assets/posters/feedback_refine_result.jpg">
                                 <source src="assets/videos/feedback_refinement/feedback_refine_result.mp4" type="video/mp4">
                             </video>
                         </div>
@@ -1272,7 +1351,7 @@
                     <div class="gallery-grid">
                         <article class="gallery-card glass">
                             <div class="video-shell">
-                                <video controls muted loop playsinline preload="none" poster="assets/posters/egocentric_1_wash_clothes.jpg">
+                                <video controls muted playsinline preload="none" poster="assets/posters/egocentric_1_wash_clothes.jpg">
                                     <source src="assets/videos/egocentric/1_wash_clothes.mp4" type="video/mp4">
                                 </video>
                             </div>
@@ -1283,7 +1362,7 @@
                         </article>
                         <article class="gallery-card glass">
                             <div class="video-shell">
-                                <video controls muted loop playsinline preload="none" poster="assets/posters/egocentric_2_wash_pot.jpg">
+                                <video controls muted playsinline preload="none" poster="assets/posters/egocentric_2_wash_pot.jpg">
                                     <source src="assets/videos/egocentric/2_wash_pot.mp4" type="video/mp4">
                                 </video>
                             </div>
@@ -1294,7 +1373,7 @@
                         </article>
                         <article class="gallery-card glass">
                             <div class="video-shell">
-                                <video controls muted loop playsinline preload="none" poster="assets/posters/egocentric_3_boil_water.jpg">
+                                <video controls muted playsinline preload="none" poster="assets/posters/egocentric_3_boil_water.jpg">
                                     <source src="assets/videos/egocentric/3_boil_water.mp4" type="video/mp4">
                                 </video>
                             </div>
@@ -1311,7 +1390,7 @@
                     <div class="gallery-grid">
                         <article class="gallery-card glass">
                             <div class="video-shell">
-                                <video controls muted loop playsinline preload="none" poster="assets/posters/exocentric_1_weight_lifting.jpg">
+                                <video controls muted playsinline preload="none" poster="assets/posters/exocentric_1_weight_lifting.jpg">
                                     <source src="assets/videos/exocentric/1_weight_lifting.mp4" type="video/mp4">
                                 </video>
                             </div>
@@ -1322,7 +1401,7 @@
                         </article>
                         <article class="gallery-card glass">
                             <div class="video-shell">
-                                <video controls muted loop playsinline preload="none" poster="assets/posters/exocentric_2_long_jump.jpg">
+                                <video controls muted playsinline preload="none" poster="assets/posters/exocentric_2_long_jump.jpg">
                                     <source src="assets/videos/exocentric/2_long_jump.mp4" type="video/mp4">
                                 </video>
                             </div>
@@ -1333,7 +1412,7 @@
                         </article>
                         <article class="gallery-card glass">
                             <div class="video-shell">
-                                <video controls muted loop playsinline preload="none" poster="assets/posters/exocentric_3_basketball_dunk.jpg">
+                                <video controls muted playsinline preload="none" poster="assets/posters/exocentric_3_basketball_dunk.jpg">
                                     <source src="assets/videos/exocentric/3_basketball_dunk.mp4" type="video/mp4">
                                 </video>
                             </div>
@@ -1343,6 +1422,205 @@
                             </div>
                         </article>
                     </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="section" id="comparison">
+            <div class="demo-wide-container">
+                <h2>Baseline Comparison</h2>
+                <div class="comparison-grid">
+                    <article class="comparison-scene glass">
+                        <h3 class="comparison-scene-title">Install Computer RAM</h3>
+                        <div class="comparison-pair">
+                            <div class="comparison-video">
+                                <div class="video-shell">
+                                    <video controls muted playsinline preload="none" poster="assets/posters/comparison_1_ram_baseline.jpg">
+                                        <source src="assets/videos/comparison/1_Install_Computer_RAM_baseline.mp4" type="video/mp4">
+                                    </video>
+                                </div>
+                                <div class="comparison-label baseline">Open-Loop Baseline</div>
+                                <p class="comparison-step"><span class="step-good">Step 1: Open the Back Cover</span><span class="step-arrow">&rarr;</span><span class="step-bad">Step 2: Insert the RAM (Physical Violation)</span></p>
+                            </div>
+                            <div class="comparison-video">
+                                <div class="video-shell">
+                                    <video controls muted playsinline preload="none" poster="assets/posters/comparison_1_ram_ours.jpg">
+                                        <source src="assets/videos/comparison/1_Install_Computer_RAM_ours.mp4" type="video/mp4">
+                                    </video>
+                                </div>
+                                <div class="comparison-label ours">Closed-Loop SPIRAL (Ours)</div>
+                                <p class="comparison-step"><span class="step-good">Step 1: Open the Back Cover</span><span class="step-arrow">&rarr;</span><span class="step-good">Step 2: Insert the RAM</span></p>
+                            </div>
+                        </div>
+                    </article>
+
+                    <article class="comparison-scene glass">
+                        <h3 class="comparison-scene-title">Pump Gas</h3>
+                        <div class="comparison-pair">
+                            <div class="comparison-video">
+                                <div class="video-shell">
+                                    <video controls muted playsinline preload="none" poster="assets/posters/comparison_2_pump_gas_baseline.jpg">
+                                        <source src="assets/videos/comparison/2_Pump_Gas_baseline.mp4" type="video/mp4">
+                                    </video>
+                                </div>
+                                <div class="comparison-label baseline">Open-Loop Baseline</div>
+                                <p class="comparison-step"><span class="step-good">Step 1: Remove the Gas Cap</span><span class="step-arrow">&rarr;</span><span class="step-bad">Step 2: Insert the Fuel Nozzle (Missing Action)</span></p>
+                            </div>
+                            <div class="comparison-video">
+                                <div class="video-shell">
+                                    <video controls muted playsinline preload="none" poster="assets/posters/comparison_2_pump_gas_ours.jpg">
+                                        <source src="assets/videos/comparison/2_Pump_Gas_ours.mp4" type="video/mp4">
+                                    </video>
+                                </div>
+                                <div class="comparison-label ours">Closed-Loop SPIRAL (Ours)</div>
+                                <p class="comparison-step"><span class="step-good">Step 1: Remove the Gas Cap</span><span class="step-arrow">&rarr;</span><span class="step-good">Step 2: Insert the Fuel Nozzle</span></p>
+                            </div>
+                        </div>
+                    </article>
+
+                    <article class="comparison-scene glass">
+                        <h3 class="comparison-scene-title">Wash Hands</h3>
+                        <div class="comparison-pair">
+                            <div class="comparison-video">
+                                <div class="video-shell">
+                                    <video controls muted playsinline preload="none" poster="assets/posters/comparison_3_wash_hands_baseline.jpg">
+                                        <source src="assets/videos/comparison/3_Wash_Hands_baseline.mp4" type="video/mp4">
+                                    </video>
+                                </div>
+                                <div class="comparison-label baseline">Open-Loop Baseline</div>
+                                <p class="comparison-step"><span class="step-good">Step 1: Rinse with Water</span><span class="step-arrow">&rarr;</span><span class="step-bad">Step 2: Dry with a Towel (Incomplete Action)</span></p>
+                            </div>
+                            <div class="comparison-video">
+                                <div class="video-shell">
+                                    <video controls muted playsinline preload="none" poster="assets/posters/comparison_3_wash_hands_ours.jpg">
+                                        <source src="assets/videos/comparison/3_Wash_Hands_ours.mp4" type="video/mp4">
+                                    </video>
+                                </div>
+                                <div class="comparison-label ours">Closed-Loop SPIRAL (Ours)</div>
+                                <p class="comparison-step"><span class="step-good">Step 1: Rinse with Water</span><span class="step-arrow">&rarr;</span><span class="step-good">Step 2: Dry with a Towel</span></p>
+                            </div>
+                        </div>
+                    </article>
+
+                    <article class="comparison-scene glass">
+                        <h3 class="comparison-scene-title">Wash Onion and Green Pepper</h3>
+                        <div class="comparison-pair">
+                            <div class="comparison-video">
+                                <div class="video-shell">
+                                    <video controls muted playsinline preload="none" poster="assets/posters/comparison_4_wash_onion_green_pepper_baseline.jpg">
+                                        <source src="assets/videos/comparison/4_Wash_Onion_and_Green_Pepper_baseline.mp4" type="video/mp4">
+                                    </video>
+                                </div>
+                                <div class="comparison-label baseline">Open-Loop Baseline</div>
+                                <p class="comparison-step"><span class="step-good">Step 1: Wash the Onion</span><span class="step-arrow">&rarr;</span><span class="step-bad">Step 2: Wash the Green Pepper (Sudden Switch)</span></p>
+                            </div>
+                            <div class="comparison-video">
+                                <div class="video-shell">
+                                    <video controls muted playsinline preload="none" poster="assets/posters/comparison_4_wash_onion_green_pepper_ours.jpg">
+                                        <source src="assets/videos/comparison/4_Wash_Onion_and_Green_Pepper_ours.mp4" type="video/mp4">
+                                    </video>
+                                </div>
+                                <div class="comparison-label ours">Closed-Loop SPIRAL (Ours)</div>
+                                <p class="comparison-step"><span class="step-good">Step 1: Wash the Onion</span><span class="step-arrow">&rarr;</span><span class="step-good">Step 2: Wash the Green Pepper</span></p>
+                            </div>
+                        </div>
+                    </article>
+
+                    <article class="comparison-scene glass">
+                        <h3 class="comparison-scene-title">Make Milktea</h3>
+                        <div class="comparison-pair">
+                            <div class="comparison-video">
+                                <div class="video-shell">
+                                    <video controls muted playsinline preload="none" poster="assets/posters/comparison_5_make_milktea_baseline.jpg">
+                                        <source src="assets/videos/comparison/5_Make_Milktea_baseline.mp4" type="video/mp4">
+                                    </video>
+                                </div>
+                                <div class="comparison-label baseline">Open-Loop Baseline</div>
+                                <p class="comparison-step"><span class="step-bad">Step 1: Pour in Hot Tea (Physical Violation)</span><span class="step-arrow">&rarr;</span><span class="step-bad">Step 2: Pour in Milk (Sudden Switch)</span></p>
+                            </div>
+                            <div class="comparison-video">
+                                <div class="video-shell">
+                                    <video controls muted playsinline preload="none" poster="assets/posters/comparison_5_make_milktea_ours.jpg">
+                                        <source src="assets/videos/comparison/5_Make_Milktea_ours.mp4" type="video/mp4">
+                                    </video>
+                                </div>
+                                <div class="comparison-label ours">Closed-Loop SPIRAL (Ours)</div>
+                                <p class="comparison-step"><span class="step-good">Step 1: Pour in Hot Tea</span><span class="step-arrow">&rarr;</span><span class="step-good">Step 2: Pour in Milk</span></p>
+                            </div>
+                        </div>
+                    </article>
+
+                    <article class="comparison-scene glass">
+                        <h3 class="comparison-scene-title">Perform a Magic Trick</h3>
+                        <div class="comparison-pair">
+                            <div class="comparison-video">
+                                <div class="video-shell">
+                                    <video controls muted playsinline preload="none" poster="assets/posters/comparison_6_magic_trick_baseline.jpg">
+                                        <source src="assets/videos/comparison/6_Perform_a_Magic_Trick_baseline.mp4" type="video/mp4">
+                                    </video>
+                                </div>
+                                <div class="comparison-label baseline">Open-Loop Baseline</div>
+                                <p class="comparison-step"><span class="step-good">Step 1: Show a Blank Piece of Paper</span><span class="step-arrow">&rarr;</span><span class="step-bad">Step 2: Fold the Paper to Produce Money (Sudden Switch)</span></p>
+                            </div>
+                            <div class="comparison-video">
+                                <div class="video-shell">
+                                    <video controls muted playsinline preload="none" poster="assets/posters/comparison_6_magic_trick_ours.jpg">
+                                        <source src="assets/videos/comparison/6_Perform_a_Magic_Trick_ours.mp4" type="video/mp4">
+                                    </video>
+                                </div>
+                                <div class="comparison-label ours">Closed-Loop SPIRAL (Ours)</div>
+                                <p class="comparison-step"><span class="step-good">Step 1: Show a Blank Piece of Paper</span><span class="step-arrow">&rarr;</span><span class="step-good">Step 2: Fold the Paper to Produce Money</span></p>
+                            </div>
+                        </div>
+                    </article>
+
+                    <article class="comparison-scene glass">
+                        <h3 class="comparison-scene-title">Use Fire Extinguisher</h3>
+                        <div class="comparison-pair">
+                            <div class="comparison-video">
+                                <div class="video-shell">
+                                    <video controls muted playsinline preload="none" poster="assets/posters/comparison_7_fire_extinguisher_baseline.jpg">
+                                        <source src="assets/videos/comparison/7_Use_Fire_Extinguisher_baseline.mp4" type="video/mp4">
+                                    </video>
+                                </div>
+                                <div class="comparison-label baseline">Open-Loop Baseline</div>
+                                <p class="comparison-step"><span class="step-bad">Step 1: Pull the Safety Pin (Physical Violation)</span><span class="step-arrow">&rarr;</span><span class="step-good">Step 2: Spray the fire</span></p>
+                            </div>
+                            <div class="comparison-video">
+                                <div class="video-shell">
+                                    <video controls muted playsinline preload="none" poster="assets/posters/comparison_7_fire_extinguisher_ours.jpg">
+                                        <source src="assets/videos/comparison/7_Use_Fire_Extinguisher_ours.mp4" type="video/mp4">
+                                    </video>
+                                </div>
+                                <div class="comparison-label ours">Closed-Loop SPIRAL (Ours)</div>
+                                <p class="comparison-step"><span class="step-good">Step 1: Pull the Safety Pin</span><span class="step-arrow">&rarr;</span><span class="step-good">Step 2: Spray the fire</span></p>
+                            </div>
+                        </div>
+                    </article>
+
+                    <article class="comparison-scene glass">
+                        <h3 class="comparison-scene-title">Clean the Seat</h3>
+                        <div class="comparison-pair">
+                            <div class="comparison-video">
+                                <div class="video-shell">
+                                    <video controls muted playsinline preload="none" poster="assets/posters/comparison_8_clean_seat_baseline.jpg">
+                                        <source src="assets/videos/comparison/8_Clean_the_Seat_baseline.mp4" type="video/mp4">
+                                    </video>
+                                </div>
+                                <div class="comparison-label baseline">Open-Loop Baseline</div>
+                                <p class="comparison-step"><span class="step-good">Step 1: Spray Cleaner</span><span class="step-arrow">&rarr;</span><span class="step-bad">Step 2: Wipe with a Cloth (Physical Violation)</span></p>
+                            </div>
+                            <div class="comparison-video">
+                                <div class="video-shell">
+                                    <video controls muted playsinline preload="none" poster="assets/posters/comparison_8_clean_seat_ours.jpg">
+                                        <source src="assets/videos/comparison/8_Clean_the_Seat_ours.mp4" type="video/mp4">
+                                    </video>
+                                </div>
+                                <div class="comparison-label ours">Closed-Loop SPIRAL (Ours)</div>
+                                <p class="comparison-step"><span class="step-good">Step 1: Spray Cleaner</span><span class="step-arrow">&rarr;</span><span class="step-good">Step 2: Wipe with a Cloth</span></p>
+                            </div>
+                        </div>
+                    </article>
                 </div>
             </div>
         </section>
