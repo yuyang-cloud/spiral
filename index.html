@@ -522,10 +522,19 @@
             padding: clamp(12px, 1.8vw, 18px);
         }
 
+        .grpo-panel {
+            padding: clamp(12px, 1.8vw, 18px);
+        }
+
         .method-panel img {
             width: 100%;
             border-radius: 16px;
             background: rgba(255, 255, 255, 0.98);
+        }
+
+        .grpo-panel img {
+            box-sizing: border-box;
+            padding: clamp(20px, 3vw, 42px);
         }
 
         .component-grid {
@@ -575,6 +584,10 @@
             stroke: rgba(52, 204, 204, 0.42);
             stroke-width: 1.4;
             filter: url(#nodeGlow);
+        }
+
+        #grpo .flow-node {
+            filter: url(#grpoNodeGlow);
         }
 
         .flow-node-title {
@@ -634,6 +647,37 @@
             height: 4px;
             rx: 2px;
             filter: url(#lineGlow);
+        }
+
+        #grpo .main-flow-dash,
+        #grpo .main-flow-arrow,
+        #grpo .feedback-flow,
+        #grpo .policy-update-flow,
+        #grpo .feedback-trunk-backbone,
+        #grpo .vertical-flow-dash,
+        #grpo .flow-dot {
+            filter: url(#grpoLineGlow);
+        }
+
+        #grpo .policy-update-flow {
+            fill: none;
+            stroke: #34cccc;
+            stroke-width: 3.4;
+            stroke-linecap: round;
+            stroke-linejoin: round;
+            stroke-dasharray: 9 12;
+            animation: flowDash 1.35s linear infinite;
+            filter: none;
+        }
+
+        #grpo .policy-update-glow {
+            fill: none;
+            stroke: rgba(52, 204, 204, 0.38);
+            stroke-width: 8;
+            stroke-linecap: round;
+            stroke-dasharray: 9 12;
+            animation: flowDash 1.35s linear infinite;
+            filter: none;
         }
 
         .main-flow-dash.cyan {
@@ -1134,7 +1178,7 @@
             <div class="method-container">
                 <h2>Method Overview</h2>
                 <div class="method-panel glass">
-                    <img src="assets/figures/method-overview.png" alt="SPIRAL method overview figure">
+                    <img src="assets/figures/method-overview.jpg" alt="SPIRAL method overview figure">
                 </div>
                 <p class="figure-caption">
                     <strong><span class="spiral-word">SPIRAL</span> Overview.</strong>
@@ -1274,6 +1318,141 @@
                         <circle class="flow-dot" cx="725" cy="177" r="4"/>
                         <circle class="flow-dot" cx="1005" cy="218" r="4"/>
                         <circle class="flow-dot" cx="1005" cy="258" r="4"/>
+                    </svg>
+                </div>
+            </div>
+        </section>
+
+        <section class="section" id="grpo">
+            <div class="method-container">
+                <h2>Self-Evolving via GRPO</h2>
+                <div class="method-panel grpo-panel glass">
+                    <img src="assets/figures/grpo.jpg" alt="SPIRAL GRPO self-evolving training overview">
+                </div>
+                <p class="figure-caption">
+                    <strong>Training-Time Self-Evolving via GRPO.</strong>
+                    PlanAgent samples action steps, VideoGenerator produces group rollouts, and CriticAgent assigns rewards for GRPO-based policy optimization. A <em>curriculum</em> gradually increases task complexity from atomic actions to long-horizon procedures, enabling VideoGenerator to <em>internalize</em> planning and verification signals for <strong>progressive-evolution</strong>.
+                </p>
+                <div class="flow-panel" aria-label="SPIRAL GRPO self-evolving training flow">
+                    <svg viewBox="0 80 1200 330" role="img" aria-labelledby="grpoFlowTitle grpoFlowDesc">
+                        <title id="grpoFlowTitle">SPIRAL GRPO training flow</title>
+                        <desc id="grpoFlowDesc">PlanAgent samples action steps, VideoGenerator produces group rollouts, CriticAgent assigns rewards, and GRPO optimization updates VideoGenerator.</desc>
+                        <defs>
+                            <linearGradient id="grpoFlowGradient" x1="70" y1="0" x2="1130" y2="0" gradientUnits="userSpaceOnUse">
+                                <stop offset="0%" stop-color="#395fcf"/>
+                                <stop offset="52%" stop-color="#36a0cd"/>
+                                <stop offset="100%" stop-color="#34cccc"/>
+                            </linearGradient>
+                            <linearGradient id="grpoFeedbackGradient" x1="70" y1="0" x2="1130" y2="0" gradientUnits="userSpaceOnUse">
+                                <stop offset="0%" stop-color="#ff7ad9"/>
+                                <stop offset="48%" stop-color="#34cccc"/>
+                                <stop offset="100%" stop-color="#395fcf"/>
+                            </linearGradient>
+                            <filter id="grpoLineGlow" x="-40%" y="-40%" width="180%" height="180%">
+                                <feGaussianBlur stdDeviation="3.5" result="blur"/>
+                                <feMerge>
+                                    <feMergeNode in="blur"/>
+                                    <feMergeNode in="SourceGraphic"/>
+                                </feMerge>
+                            </filter>
+                            <filter id="grpoNodeGlow" x="-30%" y="-60%" width="160%" height="220%">
+                                <feDropShadow dx="0" dy="0" stdDeviation="6" flood-color="#34cccc" flood-opacity="0.25"/>
+                            </filter>
+                            <clipPath id="clipPlanSteps">
+                                <rect x="320" y="169" width="155" height="16"/>
+                            </clipPath>
+                            <clipPath id="clipGroupRollouts">
+                                <rect x="725" y="169" width="155" height="16"/>
+                            </clipPath>
+                            <clipPath id="clipGrpoCriticTrunk">
+                                <rect x="997" y="218" width="16" height="44"/>
+                            </clipPath>
+                        </defs>
+
+                        <rect class="flow-node" x="70" y="136" width="250" height="82" rx="18"/>
+                        <text class="flow-node-title" x="195" y="170" text-anchor="middle">PlanAgent</text>
+                        <text class="flow-node-subtitle" x="195" y="196" text-anchor="middle">sample action steps</text>
+
+                        <rect class="flow-node" x="475" y="136" width="250" height="82" rx="18"/>
+                        <text class="flow-node-title" x="600" y="170" text-anchor="middle">VideoGenerator</text>
+                        <text class="flow-node-subtitle" x="600" y="196" text-anchor="middle">produce group rollouts</text>
+
+                        <rect class="flow-node" x="880" y="136" width="250" height="82" rx="18"/>
+                        <text class="flow-node-title" x="1005" y="170" text-anchor="middle">CriticAgent</text>
+                        <text class="flow-node-subtitle" x="1005" y="196" text-anchor="middle">assign rewards</text>
+
+                        <rect class="flow-node" x="475" y="276" width="250" height="82" rx="18"/>
+                        <text class="flow-node-title" x="600" y="310" text-anchor="middle">GRPO Optimizer</text>
+                        <text class="flow-node-subtitle" x="600" y="336" text-anchor="middle">update policy</text>
+
+                        <g clip-path="url(#clipPlanSteps)">
+                            <g>
+                                <rect class="main-flow-dash pink" x="299" y="175" width="9" height="4" rx="2"/>
+                                <rect class="main-flow-dash blue" x="320" y="175" width="9" height="4" rx="2"/>
+                                <rect class="main-flow-dash cyan" x="341" y="175" width="9" height="4" rx="2"/>
+                                <rect class="main-flow-dash cyan" x="362" y="175" width="9" height="4" rx="2"/>
+                                <rect class="main-flow-dash blue" x="383" y="175" width="9" height="4" rx="2"/>
+                                <rect class="main-flow-dash cyan" x="404" y="175" width="9" height="4" rx="2"/>
+                                <rect class="main-flow-dash cyan" x="425" y="175" width="9" height="4" rx="2"/>
+                                <rect class="main-flow-dash blue" x="446" y="175" width="9" height="4" rx="2"/>
+                                <rect class="main-flow-dash cyan" x="467" y="175" width="9" height="4" rx="2"/>
+                                <animateTransform attributeName="transform" type="translate" from="0 0" to="21 0" dur="1.35s" repeatCount="indefinite"/>
+                            </g>
+                        </g>
+                        <polygon class="main-flow-arrow" points="466,169 479,177 466,185"/>
+                        <text class="flow-label" x="397" y="156" text-anchor="middle">action steps</text>
+
+                        <g clip-path="url(#clipGroupRollouts)">
+                            <g>
+                                <rect class="main-flow-dash pink" x="704" y="175" width="9" height="4" rx="2"/>
+                                <rect class="main-flow-dash blue" x="725" y="175" width="9" height="4" rx="2"/>
+                                <rect class="main-flow-dash cyan" x="746" y="175" width="9" height="4" rx="2"/>
+                                <rect class="main-flow-dash cyan" x="767" y="175" width="9" height="4" rx="2"/>
+                                <rect class="main-flow-dash blue" x="788" y="175" width="9" height="4" rx="2"/>
+                                <rect class="main-flow-dash cyan" x="809" y="175" width="9" height="4" rx="2"/>
+                                <rect class="main-flow-dash cyan" x="830" y="175" width="9" height="4" rx="2"/>
+                                <rect class="main-flow-dash blue" x="851" y="175" width="9" height="4" rx="2"/>
+                                <rect class="main-flow-dash cyan" x="872" y="175" width="9" height="4" rx="2"/>
+                                <animateTransform attributeName="transform" type="translate" from="0 0" to="21 0" dur="1.35s" repeatCount="indefinite"/>
+                            </g>
+                        </g>
+                        <polygon class="main-flow-arrow" points="871,169 884,177 871,185"/>
+                        <text class="flow-label" x="802" y="156" text-anchor="middle">group rollouts</text>
+
+                        <path class="feedback-trunk-backbone" d="M 1005 218 L 1005 258"/>
+                        <path class="feedback-flow" d="M 1005 218 L 1005 258">
+                            <animate attributeName="stroke" values="#34cccc;#4f7cff;#ff7ad9;#34cccc" dur="2.4s" repeatCount="indefinite"/>
+                            <animate attributeName="stroke-dashoffset" from="0" to="-46" dur="1.35s" repeatCount="indefinite"/>
+                        </path>
+                        <g clip-path="url(#clipGrpoCriticTrunk)">
+                            <g class="vertical-flow-stream">
+                                <rect class="vertical-flow-dash" x="1003" y="206" width="4" height="9" fill="#ff7ad9"/>
+                                <rect class="vertical-flow-dash" x="1003" y="222" width="4" height="9" fill="#34cccc"/>
+                                <rect class="vertical-flow-dash" x="1003" y="238" width="4" height="9" fill="#4f7cff"/>
+                                <rect class="vertical-flow-dash" x="1003" y="254" width="4" height="9" fill="#ff7ad9"/>
+                            </g>
+                        </g>
+                        <path class="feedback-flow" d="M 1005 258 L 1005 295 Q 1005 317 983 317 L 725 317">
+                            <animate attributeName="stroke" values="#34cccc;#4f7cff;#ff7ad9;#34cccc" dur="2.4s" repeatCount="indefinite"/>
+                            <animate attributeName="stroke-dashoffset" from="0" to="-46" dur="1.35s" repeatCount="indefinite"/>
+                        </path>
+                        <polygon class="main-flow-arrow" points="725,317 740,309 740,325"/>
+                        <text class="flow-label" x="872" y="306" text-anchor="middle">reward signals</text>
+
+                        <path class="policy-update-glow" d="M 600 276 L 600 218"/>
+                        <path class="policy-update-flow" d="M 600 276 L 600 218">
+                            <animate attributeName="stroke" values="#34cccc;#4f7cff;#34cccc" dur="2.1s" repeatCount="indefinite"/>
+                        </path>
+                        <polygon class="main-flow-arrow" points="600,218 592,233 608,233"/>
+                        <text class="flow-label" x="510" y="248" text-anchor="middle">policy update</text>
+
+                        <circle class="flow-dot" cx="320" cy="177" r="4"/>
+                        <circle class="flow-dot" cx="725" cy="177" r="4"/>
+                        <circle class="flow-dot" cx="1005" cy="218" r="4"/>
+                        <circle class="flow-dot" cx="1005" cy="258" r="4"/>
+                        <circle class="flow-dot" cx="725" cy="317" r="4"/>
+                        <circle class="flow-dot" cx="600" cy="276" r="4"/>
+                        <circle class="flow-dot" cx="600" cy="218" r="4"/>
                     </svg>
                 </div>
             </div>
